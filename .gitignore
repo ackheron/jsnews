@@ -3,3 +3,4 @@ Javanews.sln
 backend/node_modules
 *.njsproj*
 .vscode/
+node_modules/

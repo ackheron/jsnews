@@ -2,7 +2,7 @@
  * Représentation du format d'un article ainsi que le formatage des dates pour affichage
  */
 
-class article {
+class Article {
     // Constructeur qui accepte un objet jsonArticle en argument
     constructor(jsonArticle) {
         // Si jsonArticle est fourni et est truthy, fusionne ses propriétés avec l'instance courante
@@ -13,7 +13,6 @@ class article {
           */
         jsonArticle && Object.assign(this, jsonArticle);
     }
-
     getFormattedDate(article) {
         // Crée un objet Date à partir de la date de publication de l'objet courant
         let date = new Date(this.publicationDate);
