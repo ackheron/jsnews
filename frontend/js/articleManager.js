@@ -1,7 +1,8 @@
 /**
- * Gestion des articles en objet, gère le tri par date et le formatage des dates pour affichage
+ * Classe pour gérer les articles. Elle fournit des fonctionnalités pour trier les articles
+ * par date de publication et pourrait à l'avenir contenir d'autres méthodes pour le formatage,
+ * la récupération, etc.
  */
-
 class ArticleManager {
     /**
      * Construit une nouvelle instance de l'ArticleManager.
