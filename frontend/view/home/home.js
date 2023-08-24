@@ -11,22 +11,36 @@ const fetchData = async () => {
         // Stocke les données renvoyées par l'API
         const data = response.data;
 
-        // Parcourt chaque article et l'affiche sur la page
-        for (const arrayArticle of data) {
-            // Crée une instance de l'objet Article à partir des données du tableau d'objets envoyer par l'API
-            let article = new Article(arrayArticle);
+        // Appel de la fonction pour afficher les articles sur la page `displayArticle`
+        displayArticle(data);
+    } catch (error) {
+        console.log(error);
+    }
+};
 
-            // Génère le HTML pour chaque article et l'ajoute au conteneur
-            document.querySelector(".container").innerHTML += `
+fetchData();
+
+/**
+ * Affiche les articles sur la page.
+ * @param {Array} data - Tableau d'objets d'articles renvoyer par l'API
+ */
+const displayArticle = (data) => {
+    // Parcourt chaque article et l'affiche sur la page
+    for (const arrayArticle of data) {
+        // Crée une instance de l'objet Article à partir des données du tableau d'objets envoyer par l'API
+        let article = new Article(arrayArticle);
+
+        // Génère le HTML pour chaque article et l'ajoute au conteneur
+        document.querySelector(".container").innerHTML += `
                 <div class="col-12 mt-5">
                     <div class="card article">
                         <div class="card-header ">
                             <h5 class="card-title d-flex justify-content-between">${article.title}<span class="publication-date">${article.getFormattedDate(
-                article.publicationDate
-            )}</span></h5>
+            article.publicationDate
+        )}</span></h5>
                         </div>
                         <img src="http://localhost:4000/${article.image}" class="card-img-top">
-                        <span class="fa-stack fa-2x addFavorite">
+                        <span class="fa-stack fa-2x addFavorite" data-id=${article.id}>
                             <i class="fas fa-star fa-stack-1x"></i>
                             <i class="far fa-star fa-stack-1x"></i>
                         </span>
@@ -36,10 +50,11 @@ const fetchData = async () => {
                     </div>
                 </div>
             `;
-        }
-    } catch (error) {
-        console.log(error);
     }
-};
 
-fetchData();
+    document.querySelectorAll(".addFavorite").forEach((star) => {
+        star.addEventListener("click", () => {
+            addFavorites(star.dataset.id);
+        });
+    });
+};
