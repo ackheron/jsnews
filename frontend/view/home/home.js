@@ -35,9 +35,9 @@ const displayArticle = (data) => {
                 <div class="col-12 mt-5">
                     <div class="card article">
                         <div class="card-header ">
-                            <h5 class="card-title d-flex justify-content-between">${article.title}<span class="publication-date">${article.getFormattedDate(
-            article.publicationDate
-        )}</span></h5>
+                            <h5 class="card-title d-flex justify-content-between">${
+                                article.title
+                            }<span class="publication-date">${article.getFormattedDate()}</span></h5>
                         </div>
                         <img src="http://localhost:4000/${article.image}" class="card-img-top">
                         <span class="fa-stack fa-2x addFavorite" data-id=${article.id}>
