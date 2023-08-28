@@ -55,6 +55,7 @@ const displayArticle = (data) => {
     document.querySelectorAll(".addFavorite").forEach((star) => {
         star.addEventListener("click", () => {
             addFavorites(star.dataset.id);
+            star.setAttribute("class", "fa-stack fa-2x addFavorite activated");
         });
     });
 };
