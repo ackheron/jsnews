@@ -11,6 +11,7 @@ class ArticleManager {
      */
     constructor(listArticle) {
         this.listArticle = listArticle; // Stocke le tableau d'articles dans l'instance qui appelle la classe
+        console.log("🚀 ~ file: articleManager.js:14 ~ ArticleManager ~ constructor ~ this:", this);
     }
 
     /**
@@ -18,11 +19,24 @@ class ArticleManager {
      *
      * @return {Array} Le tableau d'articles trié par date de publication.
      */
-    sortArticle() {
+    static sortByRecent(elem) {
         // Utilise la méthode sort avec une fonction de comparaison personnalisée
-        return this.listArticle.sort((firstEl, secondEl) => {
+        return elem.sort((firstEl, secondEl) => {
             // Compare les dates de publication des deux articles et décide de l'ordre de tri
             return Date.parse(firstEl.publicationDate) < Date.parse(secondEl.publicationDate) ? 1 : -1;
+        });
+    }
+
+    /**
+     * Trie les articles par date de publication, du plus récent au plus ancien.
+     *
+     * @return {Array} Le tableau d'articles trié par date de publication.
+     */
+    static sortByOldest(elem) {
+        // Utilise la méthode sort avec une fonction de comparaison personnalisée
+        return elem.sort((firstEl, secondEl) => {
+            // Compare les dates de publication des deux articles et décide de l'ordre de tri
+            return Date.parse(firstEl.publicationDate) > Date.parse(secondEl.publicationDate) ? 1 : -1;
         });
     }
 }
