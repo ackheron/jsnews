@@ -7,7 +7,6 @@ const fetchData = async () => {
     try {
         // Envoie une requête GET pour récupérer les données des articles
         const response = await axios.get("http://localhost:4000/api/article/");
-
         // console.log(response.data);
         // Stocke les données renvoyées par l'API
         data = response.data;

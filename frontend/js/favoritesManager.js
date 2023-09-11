@@ -19,6 +19,10 @@ function getFavoritesLocalStorage() {
     }
 }
 
+function getFavoritesId() {
+    return getFavoritesLocalStorage().map((favorite) => favorite);
+}
+
 function setFavoritesLocalStorage(listFavorites) {
     localStorage.setItem("listFavorites", JSON.stringify(listFavorites));
 }
