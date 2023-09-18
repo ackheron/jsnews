@@ -55,10 +55,41 @@ const displayArticle = (data) => {
                 `;
     }
 
+    // Sélectionne tous les éléments ayant la classe "addFavorite"
     document.querySelectorAll(".addFavorite").forEach((star) => {
+        // Vérifie si l'article lié à cette étoile est marqué comme favori dans le localStorage
+        if (localStorage.getItem(`article-${star.dataset.id}`) === "favorite") {
+            // Si l'article est un favori, active visuellement l'étoile
+            star.classList.add("activated");
+        }
+
+        // Ajoute un écouteur d'événement pour détecter les clics sur l'étoile
         star.addEventListener("click", () => {
-            addFavorites(star.dataset.id);
-            star.setAttribute("class", "fa-stack fa-2x addFavorite activated");
+            // Si l'étoile est activée (article est un favori)
+            /*
+            l'intention est de vérifier si la classe activated existe dans l'attribut className de l'élément star.
+
+            Si activated est effectivement une classe de star, alors indexOf("activated") renverra un indice (un nombre) qui est >= 0 (parce que les indices commencent à 0 pour la première position).
+
+            Si activated n'est pas une classe de star, alors indexOf("activated") renverra -1.
+
+            Ainsi, if (star.className.indexOf("activated") != -1) vérifie si l'élément star a la classe activated. Si c'est le cas, le bloc de code à l'intérieur de cette instruction if sera exécuté. Si ce n'est pas le cas, ce bloc sera ignoré. */
+            if (star.className.indexOf("activated") != -1) {
+                // Retire l'article des favoris
+                removeFavorites(star.dataset.id);
+                // Désactive visuellement l'étoile
+                star.classList.remove("activated");
+                // Supprime l'état de favori de cet article du localStorage
+                localStorage.removeItem(`article-${star.dataset.id}`);
+            } else {
+                // Si l'étoile n'est pas activée (article n'est pas un favori)
+                // Ajoute l'article aux favoris
+                addFavorites(star.dataset.id);
+                // Active visuellement l'étoile
+                star.classList.add("activated");
+                // Sauvegarde l'état de favori de cet article dans le localStorage
+                localStorage.setItem(`article-${star.dataset.id}`, "favorite");
+            }
         });
     });
 };

@@ -9,6 +9,13 @@ function addFavorites(articlesId) {
     setFavoritesLocalStorage(listFavorites);
 }
 
+function removeFavorites(articlesId) {
+    let listFavorites = getFavoritesLocalStorage();
+    // listFavorites = listFavorites.filter((favorites) => favorites.id != articlesId);
+    listFavorites.pop(articlesId);
+    setFavoritesLocalStorage(listFavorites);
+}
+
 function getFavoritesLocalStorage() {
     let listFavorites = localStorage.getItem("listFavorites");
 
